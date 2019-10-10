@@ -94,6 +94,8 @@ window 进入 redis 解压包 执行redis-server (使用cmd)
 
 2、登陆使用127.0.0.1:3000，不会获取用户的信息，所以获取不到用户的登陆信息，用localhost:3000就可以
 
+3、接口开发操作本地数据库接口完善，需完善获取热门城市、搜索、热门搜索
+
 # 需求分析（接口设计原则）
 
 1、用户注册登录问题
@@ -117,19 +119,19 @@ window 进入 redis 解压包 执行redis-server (使用cmd)
 
 /geo/province/:id
 
-/geo/city
+/geo/city            // 获取所有城市
 
-/geo/hostCity
+/geo/hostCity       // 获取热门城市
 
-/geo/menu
+/geo/menu          // 左边表单类表数据
 
 3、查询类服务接口设计
 
-/search/top
+/search/top                  // 输入搜索关键字获取数据 params 关键字(input)、当前城市(city)、 签名(sign)
 
 /search/resultsByKeywords
 
-/search/hotPlace
+/search/hotPlace            // 获取热门搜索
 
 /search/products
 
