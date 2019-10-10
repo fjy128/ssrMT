@@ -32,9 +32,13 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 
  ```bash
 import Koa from‘koa’
+
 SyntaxError: Unexpected token import
+
 语法错误：此处不应该出现import
+
 执行：cnpm install --save-dev babel-preset-env babel-cli
+
 新建一个.babelrc文件，并在里面写入：
 {
   "presets":["es2015"]
