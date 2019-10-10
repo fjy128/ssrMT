@@ -28,13 +28,13 @@ https://www.runoob.com/redis/redis-install.html
 
 redis文档： https://www.php.cn/manual/view/16111.html
 
-mac版
+1、mac版
 
 安装 redis : brew install redis(mac) 
 
 启动 redis : redis-server
 
-window版
+2、window版
 window 进入 redis 解压包 执行redis-server (使用cmd)
 
 启动 redis-server
@@ -53,7 +53,9 @@ window 进入 redis 解压包 执行redis-server (使用cmd)
 
 2、登陆使用127.0.0.1:3000，不会获取用户的信息，所以获取不到用户的登陆信息，用localhost:3000就可以
 
-#需求分析（接口设计）
+# 需求分析（接口设计原则）
+
+1、用户注册登录问题
 
 /users/signup  //注册
 
@@ -66,9 +68,7 @@ window 进入 redis 解压包 执行redis-server (使用cmd)
 /users/getUser //用户登陆信息
 
 
-#城市热门服务类接口设计
-
-需求分析
+2、城市热门服务类接口设计
 
 /geo/getPosition
 
@@ -82,7 +82,7 @@ window 进入 redis 解压包 执行redis-server (使用cmd)
 
 /geo/menu
 
-#查询类接口设计
+3、查询类服务接口设计
 
 /search/top
 
@@ -95,7 +95,7 @@ window 进入 redis 解压包 执行redis-server (使用cmd)
 /search/product/:id
 
 
-#数据库导入
+4、数据库导入
 
 1）首先在RoTo 3T中导入数据
 
@@ -110,7 +110,7 @@ window 进入 redis 解压包 执行redis-server (使用cmd)
   pois.dat:数据源
 
 
-#接口签名
+5、接口签名
 axios.get(`http://cp-tools.cn/geo/getPosition?sign=${sign}`)
 
 ${sign}:签名  
