@@ -46,11 +46,6 @@
             </dd>
           </dl>
         </div>
-        <p class="suggest">
-          <a
-            :href="'/products?keyword='"
-          >猫眼</a>
-        </p>
         <ul class="nav">
           <li>
             <nuxt-link
