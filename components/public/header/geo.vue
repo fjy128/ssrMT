@@ -21,7 +21,7 @@ export default {
   },
   async mounted() {
    let {status,data: {province,city}} = await this.$axios.get(`geo/getPosition`)
-  console.log(status, province,city)
+  console.log(status, province,city,'geo')
   if(status !== 200) return false;
   this.currCity = `${province}${city}`
   },

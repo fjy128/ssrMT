@@ -14,6 +14,7 @@ import passport from './interface/utils/passport'
 import cors from 'koa2-cors'
 import users from './interface/users'
 import geo from './interface/geo'
+import search from './interface/search'
 
 
 
@@ -58,6 +59,7 @@ async function start () {
   // 路由注入
   app.use(users.routes()).use(users.allowedMethods())
   app.use(geo.routes()).use(geo.allowedMethods())
+  app.use(search.routes()).use(search.allowedMethods())
   app.use((ctx) => {
     ctx.status = 200
 

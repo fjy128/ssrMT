@@ -30,8 +30,8 @@
             class="hotPlace"
           >
             <dt>热门搜索</dt>
-            <dd>
-              <a :href="'/products?keyword='">冒烟</a>
+            <dd v-for ="(item,idx) in $store.state.home.hotPlace.slice(0,5)" :key="idx">
+             <a :href="'/products?keyword='+encodeURIComponent(item.name)">{{ item.name }}</a>
             </dd>
           </dl>
           <dl
@@ -42,7 +42,7 @@
               v-for="(item,idx) in searchList"
               :key="idx"
             >
-              <a :href="'/products?keyword='">猫眼石</a>
+            <a :href="'/products?keyword='+encodeURIComponent(item.name)">{{ item.name }}</a>
             </dd>
           </dl>
         </div>
@@ -124,7 +124,7 @@
 </template>
 
 <script>
-import _ from 'lodash'
+import _ from 'lodash'// 引入lodash
 export default {
   data(){
     return {
@@ -152,18 +152,18 @@ export default {
         self.isFocus=false
       },200)
     },
+    // 这里不能输一个字母就请求，需要延时， 可以使用第三方库 lodash,需要项目中安装
     input:_.debounce(async function(){
       let self=this;
-      let city=""
-      // let city=self.$store.state.geo.position.city.replace('市','')
+      let city=self.$store.state.geo.position.city.replace('市','') // 获取当前城市
       self.searchList=[]
-      let {status,data:{top}}=await self.$axios.get('/search/top',{
+      let {status,data:{top}}= await self.$axios.get('/search/top',{
         params:{
           input:self.search,
           city
         }
       })
-      self.searchList=top.slice(0,10)
+      self.searchList=top.slice(0,10) // 截取10 调数据
     },300)
   }
 }

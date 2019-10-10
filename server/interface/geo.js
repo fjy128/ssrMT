@@ -1,5 +1,6 @@
 import Router from 'koa-router';
 import axios from './utils/axios'
+import Province from '../dbs/models/province'
 
 let router = new Router({prefix:'/geo'})
 
@@ -7,7 +8,6 @@ const sign = 'fjy'//签名
 
 // 获取当前城市
 router.get('/getPosition', async (ctx) => {
-  console.log(ctx,8888)
   let {status,data: {province,city}} = await axios.get(`http://cp-tools.cn/geo/getPosition`)
   console.log(status, province)
   if (status === 200) {
@@ -22,6 +22,24 @@ router.get('/getPosition', async (ctx) => {
     }
   }
 })
+// 查询省份
+router.get('/province',async(ctx)=>{
+  // 下面只操作本地的数据 只是部分数据，前提需要引入数据表 dbs/models/Province,才可以调用Province.find()
+  // let province = await Province.find()
+  // ctx.body = {
+  //   province:province.map(item=>{
+  //     return{
+  //       id:item.id,
+  //       name:item.value[0]
+  //     }
+  //   })
+  // }
+
+  // 下面代码操作的是远程第三方数据，获取全国数据
+  let {status, data: { province}} = await axios.get(`http://cp-tools.cn/geo/province?sign=${sign}  `)
+  ctx.body = { province: status === 200 ? province: [] }
+})
+
 // 获取当前城市天气
 router.get('/weather', async (ctx) => {
   console.log(ctx,6666)
@@ -46,4 +64,17 @@ router.get('/weather', async (ctx) => {
   // }
 })
 
+// 获取表单数据
+router.get('/menu',async (ctx)=>{
+  let {status,data:{menu}} = await axios.get('http://cp-tools.cn/geo/menu');
+  if(status === 200 ){
+    ctx.body = {
+      menu
+    }
+  }else{
+    ctx.body = {
+      menu:[]
+    }
+  }
+})
 export default router
