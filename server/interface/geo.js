@@ -45,6 +45,11 @@ router.get('/province/:id',async (ctx)=>{
   let {status,data:{city}} = await axios.get(`http://cp-tools.cn/geo/province/${ctx.params.id}?sign=${sign}`)
   ctx.body = { city: status === 200 ? city : [] }
 })
+// 获取热门城市
+router.get('/hotCity',async (ctx)=>{
+  let {status,data:{hots}} = await axios.get(`http://cp-tools.cn/geo/hotCity?sign=${sign}`)
+  ctx.body = { hots: status === 200 ? hots : [] }
+})
 
 // 获取当前城市天气
 router.get('/weather', async (ctx) => {
