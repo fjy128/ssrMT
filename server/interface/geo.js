@@ -40,6 +40,12 @@ router.get('/province',async(ctx)=>{
   ctx.body = { province: status === 200 ? province: [] }
 })
 
+// 查询单个省份城市
+router.get('/province/:id',async (ctx)=>{
+  let {status,data:{city}} = await axios.get(`http://cp-tools.cn/geo/province/${ctx.params.id}?sign=${sign}`)
+  ctx.body = { city: status === 200 ? city : [] }
+})
+
 // 获取当前城市天气
 router.get('/weather', async (ctx) => {
   console.log(ctx,6666)

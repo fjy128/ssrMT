@@ -47,6 +47,7 @@ export default {
     }
   },
   watch:{
+     // 监听省份
     pvalue:async function(newPvalue){
       let self=this;
       let {status,data:{city}}=await self.$axios.get(`/geo/province/${newPvalue}`)
