@@ -31,12 +31,27 @@ router.get('/hotPlace',async(ctx)=>{
   let {status,data:{result}} = await axios.get('http://cp-tools.cn/search/hotPlace',{
     params:{
       sign,
-      // city:encodeURIComponent(city)// 中文状态需要进行编码，与第三方协同解码
-      city
+      city// 中文状态需要进行编码，与第三方协同解码 encodeURIComponent(city)
     }
   })
   ctx.body = {
     result: status === 200 ? result : []
+  }
+})
+
+// 获取关键字信息
+router.get('/resultsByKeywords',async (ctx)=>{
+  const {city,keyword} = ctx.query;
+  let {status,data:{count,pois}} = await axios.get('http://cp-tools.cn/search/resultsByKeywords',{
+    params:{
+      city,
+      keyword,
+      sign
+    }
+  })
+  ctx.body = {
+    count: status === 200 ? count : 0,
+    pois: status ===200 ? pois : []
   }
 })
 

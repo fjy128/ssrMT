@@ -20,7 +20,7 @@
         :class="{active:kind==='spa'}"
         kind="spa"
         keyword="丽人"
-      > 
+      >
         丽人SPA
       </dd>
       <dd
@@ -91,59 +91,44 @@ export default {
     }
   },
   async mounted(){
-    let self=this;
-    self.list[self.kind]=[]
-    // let {status,data:{count,pois}}=await self.$axios.get('/search/resultsByKeywords',{
-    //   params:{
-    //     keyword:'景点',
-    //     city:self.$store.state.geo.position.city
-    //   }
-    // })
-    // if(status===200&&count>0){
-    //   let r= pois.filter(item=>item.photos.length).map(item=>{
-    //     return {
-    //       title:item.name,
-    //       pos:item.type.split(';')[0],
-    //       price:item.biz_ext.cost||'暂无',
-    //       img:item.photos[0].url,
-    //       url:'//abc.com'
-    //     }
-    //   })
-    //   self.list[self.kind]=r.slice(0,9)
-    // }else{
-    //   self.list[self.kind]=[]
-    // }
+    this.getArtistic('景点')
   },
   methods: {
-    over: async function (e) {
+    over: async function (e,keywords) {
       let dom = e.target
       let tag = dom.tagName.toLowerCase()
+      if (tag === 'dd') {
+        this.kind = dom.getAttribute('kind')
+        let keyword = dom.getAttribute('keyword')
+        this.getArtistic(keyword)
+      }
+    },
+
+    // 获取列表信息
+    async getArtistic(keyword){
       let self = this
       self.list[self.kind]=[]
-      // if (tag === 'dd') {
-      //   this.kind = dom.getAttribute('kind')
-      //   let keyword = dom.getAttribute('keyword')
-      //   let {status,data:{count,pois}}=await self.$axios.get('/search/resultsByKeywords',{
-      //     params:{
-      //       keyword,
-      //       city:self.$store.state.geo.position.city
-      //     }
-      //   })
-      //   if(status===200&&count>0){
-      //     let r= pois.filter(item=>item.photos.length).map(item=>{
-      //       return {
-      //         title:item.name,
-      //         pos:item.type.split(';')[0],
-      //         price:item.biz_ext.cost||'暂无',
-      //         img:item.photos[0].url,
-      //         url:'//abc.com'
-      //       }
-      //     })
-      //     self.list[self.kind]=r.slice(0,9)
-      //   }else{
-      //     self.list[self.kind]=[]
-      //   }
-      // }
+      let {status,data:{count,pois}}=await self.$axios.get('/search/resultsByKeywords',{
+        params:{
+          keyword,
+          city:self.$store.state.geo.position.city
+        }
+      })
+      if(status===200&&count>0){
+        // 过滤有图片的数据
+        let r= pois.filter(item=>item.photos.length).map(item=>{
+          return {
+            title:item.name,
+            pos:item.type.split(';')[0],
+            price:item.biz_ext.cost||'暂无',
+            img:item.photos[0].url,
+            url:'//abc.com'
+          }
+        })
+        self.list[self.kind]=r.slice(0,12)
+      }else{
+        self.list[self.kind]=[]
+      }
     }
   },
 
