@@ -38,7 +38,7 @@
             </dd>
           </dl>
           <dl
-            v-if="isSearchList"
+            v-show="isSearchList"
             class="searchList"
           >
             <dd
@@ -49,6 +49,15 @@
             </dd>
           </dl>
         </div>
+        <p class="suggest">
+          <a
+            v-for="(item,idx) in $store.state.home.hotPlace.slice(0,5)"
+            :key="idx"
+            :href="'/products?keyword='+encodeURIComponent(item.name)"
+          >
+            {{ item.name }}
+          </a>
+        </p>
         <ul class="nav">
           <li>
             <nuxt-link

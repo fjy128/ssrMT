@@ -162,3 +162,8 @@ ${sign}:签名
 
 获取签名地址：http://cp-tools.cn/sign
 
+# 高德地图 
+
+[开发者API](https://lbs.amap.com/api/javascript-api/guide/abc/prepare)
+
+使用步骤：1、生成地图控件；

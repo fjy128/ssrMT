@@ -24,6 +24,7 @@
         :value="item.value"
       />
     </el-select>
+    <span :style="{marginLeft:'25px'}">直接搜索:</span>
     <el-autocomplete
       v-model="input"
       :fetch-suggestions="querySearchAsync"
