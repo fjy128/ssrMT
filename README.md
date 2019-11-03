@@ -166,4 +166,9 @@ ${sign}:签名
 
 [开发者API](https://lbs.amap.com/api/javascript-api/guide/abc/prepare)
 
-使用步骤：1、生成地图控件；
+使用步骤：一、生成地图控件；
+1. 首先，注册开发者账号，成为高德开放平台开发者
+
+2. 登陆之后，在进入「应用管理」 页面「创建新应用」
+
+3. 为应用添加 Key，「服务平台」一项请选择「 Web 端 ( JSAPI ) 」

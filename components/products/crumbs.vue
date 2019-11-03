@@ -4,10 +4,11 @@
       <el-breadcrumb-item 
         :to="{ path: '/' }"
       >
-        深圳美团
+        {{ $store.state.geo.position.city }} 
+        美团
       </el-breadcrumb-item>
       <el-breadcrumb-item>
-        <a href="/">青芒果旅行网</a>
+        <a href="/">{{ keyword }}</a>
       </el-breadcrumb-item>
     </el-breadcrumb>
   </div>
