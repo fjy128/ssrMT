@@ -70,7 +70,8 @@ redis文档： https://www.php.cn/manual/view/16111.html
 
 2）解压redis 安装包
 
-3）启动服务器  Win+R快捷键，输入CMD，进入CMD窗口，进入解压后文件所在路径，并输入以下指令：redis-server.exe redis.windows.conf
+3）启动服务器  Win+R快捷键，输入CMD，进入CMD窗口，进入解压后文件所在路径，并输入以下指令：redis-server.exe redis.windows.conf 
+- D:\Redis-x64-3.0.504(环球雅途工作) 进入d盘 d:
 
 完成上面步骤就完成了window系统安装redis并启动
 
@@ -86,6 +87,8 @@ window 进入 redis 解压包 执行redis-server (使用cmd)
 
 (备注：‘/Users/a/Desktop/meituan-app/data’是你数据库存放地址，data就是数据库文件)
 
+mongodb 语法文档:https://docs.mongodb.com/manual/reference/method/db.collection.find/#db.collection.find
+
 # passport  http://ju.outofmemory.cn/entry/99459
 
 
@@ -95,6 +98,14 @@ window 进入 redis 解压包 执行redis-server (使用cmd)
 2、登陆使用127.0.0.1:3000，不会获取用户的信息，所以获取不到用户的登陆信息，用localhost:3000就可以
 
 3、接口开发操作本地数据库接口完善，需完善获取热门城市、搜索、热门搜索
+
+4、接口实现本地数据库连接
+
+5、页面操作弹框提示
+
+6、用户登录失败或者密码账号有错做相应的弹框提示
+
+
 
 # 需求分析（接口设计原则）
 

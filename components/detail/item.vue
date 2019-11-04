@@ -47,13 +47,7 @@ export default {
   methods: {
     createCart: async function () {
       let self = this;
-      let {
-        status,
-        data: {
-          code,
-          id
-        }
-      } = await this.$axios.post('/cart/create', {
+      let {status,data: {code,id}} = await this.$axios.post('/cart/create', {
         params: {
           id: Math.random().toString().slice(3, 9),
           detail: {
@@ -63,6 +57,7 @@ export default {
           }
         }
       })
+      console.log(id,'页面请求接口')
       if(status===200&&code===0){
         window.location.href=`/cart/?id=${id}`
       }else{
