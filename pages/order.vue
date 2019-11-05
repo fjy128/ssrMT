@@ -1,16 +1,72 @@
 <template>
   <div class="page-order">
     <el-row>
-      <el-col :span="4" class="navBar">
+      <!-- 左边栏 列表 -->
+      <el-col 
+        :span="4" 
+        class="navBar"
+       >
         <h3>我的美团</h3>
         <dl>
-          <dt>我的订单</dt>
-          <dd>全部订单<i class="el-icon-arrow-right"></i></dd>
-          <dd>代付款<i class="el-icon-arrow-right"></i></dd>
-          <dd>待使用<i class="el-icon-arrow-right"></i></dd>
+          <dt> 我的订单 </dt>
+          <dd>
+            全部订单
+            <i class="el-icon-arrow-right" />
+          </dd>
+          <dd>
+            代付款
+            <i class="el-icon-arrow-right" />
+          </dd>
+          <dd>
+            待使用
+            <i class="el-icon-arrow-right" />
+          </dd>
+        </dl>
+        <dl>
+          <dt> 我的收藏 </dt>
+          <dd>
+            收藏的商家
+            <i class="el-icon-arrow-right" />
+          </dd>
+          <dd>
+            收藏的团购
+            <i class="el-icon-arrow-right" />
+          </dd>
+        </dl>
+        <dl>
+          <dt> 抵用券 </dt>
+          <dd>
+            可用券
+            <i class="el-icon-arrow-right" />
+          </dd>
+          <dd>
+            失败券
+            <i class="el-icon-arrow-right" />
+          </dd>
+        </dl>
+        <dl>
+          <dt>个人信息 </dt>
+          <dd>
+            账户设置
+            <i class="el-icon-arrow-right" />
+          </dd>
         </dl>
       </el-col>
+
+      <!--右边栏 表格 -->
+      <el-col
+        :span="19"
+        class="table"
+      >
+      <el-tabs v-model="activeName" @tab-click="handleClick">
+        <el-tab-pane label="全部订单" name="all"><list :cur="cur"/></el-tab-pane>
+        <el-tab-pane label="代付款" name="unpay"><list :cur="cur"/></el-tab-pane>
+        <el-tab-pane label="待使用" name="unuse"><list :cur="cur"/></el-tab-pane>
+        <el-tab-pane label="待评价" name="unreplay"><list :cur="cur"/></el-tab-pane>
+      </el-tabs>
+      </el-col>
     </el-row>
+
   </div>
 </template>
 
@@ -19,12 +75,47 @@
     name: '',
     data() {
       return {
-        
+      activeName:'all',
+      list:[],
+      cur:[]
       }
+    },
+    watch:{
+      activeName:function(val){
+        this.url = this.list.filter(item=>{
+          if(val === 'unpay'){
+            return item.status === 0
+          } else if(val === 'all'){
+            return true
+          }else{
+            return false
+          }
+        })
+      },
+      list:function(){
+        let val = this.activeName
+        this.cur = this.list.filter(item=>{
+          if(val === 'unpay'){
+            return item.status === 0
+          }else if(val === 'all'){
+            return true
+          }else{
+            return false
+          }
+        })
+      }
+    },
+    methods:{
+      handleClick:function(tab){
+        this.activeName = tab.name
+      }
+    },
+    async asyncData(ctx){
+
     }
   }
 </script>
 
-<style lang="" scoped>
-  
+<style lang="cscc" >
+  @import "@/assets/css/order/index.scss"
 </style>

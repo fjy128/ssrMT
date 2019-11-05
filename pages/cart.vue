@@ -14,12 +14,17 @@
           <el-button
             type="primary"
             @click="submit"
-          >提交订单</el-button>
+          >
+            提交订单
+          </el-button>
         </div>
       </el-col>
       <el-col
         v-else
-        class="empty">购物车为空</el-col>
+        class="empty"
+      >
+        购物车为空
+      </el-col>
     </el-row>
   </div>
 </template>
@@ -61,13 +66,10 @@ export default {
       }
     }
   },
-  async asyncData(ctx){
-    console.log(ctx,233333333)
+   async asyncData(ctx){
     let {status,data:{code,data:{name,price}}}=await ctx.$axios.post('/cart/getCart',{
       id:ctx.query.id
     })
-    console.log(name,price)
-    debugger
     if(status===200&&code===0&&name){
       return {
         cart:[{
