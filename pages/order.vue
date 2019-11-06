@@ -4,9 +4,9 @@
       <!-- 左边栏 列表 -->
       <el-col 
         :span="4" 
-        class="navBar"
+        class="navbar"
        >
-        <h3>我的美团</h3>
+        <!-- <h3>我的美团</h3> -->
         <dl>
           <dt> 我的订单 </dt>
           <dd>
@@ -71,7 +71,11 @@
 </template>
 
 <script>
+ import list from '../components/order/list'
   export default {
+    components: {
+      list
+    },
     name: '',
     data() {
       return {
@@ -82,6 +86,7 @@
     },
     watch:{
       activeName:function(val){
+        console.log(this.list)
         this.url = this.list.filter(item=>{
           if(val === 'unpay'){
             return item.status === 0
@@ -107,15 +112,40 @@
     },
     methods:{
       handleClick:function(tab){
+        console.log(tab.name,555)
         this.activeName = tab.name
       }
     },
     async asyncData(ctx){
-
+      let {status,data:{code,list}} = await ctx.$axios.post('order/getOrders')
+      if(status ===200 && code ===0 && list.length){
+        return{
+          // list:list.map(item=>{
+          //   return{
+          //     img:item.imgs.length?item.imgs[0].url:'/logo.png',
+          //     name:item.name,
+          //     count:1,
+          //     total:item.total,
+          //     status:item.status,
+          //     statusTxt:item.status===0?'代付款':'已付款'
+          //   }
+          // }),
+          cur:list.map(item=>{
+            return{
+              img:item.imgs.length?item.imgs[0].url:'/logo.png',
+              name:item.name,
+              count:1,
+              total:item.total,
+              status:item.status,
+              statusTxt:item.status===0?'代付款':'已付款'
+            }
+          })
+        }
+      }
     }
   }
 </script>
 
-<style lang="cscc" >
-  @import "@/assets/css/order/index.scss"
+<style lang="scss">
+  @import "@/assets/css/order/index.scss";
 </style>

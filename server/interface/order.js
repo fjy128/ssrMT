@@ -10,7 +10,8 @@ router.post('/createOrder',async ctx=>{
   let {id, price, count} = ctx.request.body;
   let time = Date();
   let orderID = md5(Math.random()*1000 + time).toString();
-  if(ctx.isAuthenticated()){
+  console.log(ctx.isAuthenticated())
+  if(!ctx.isAuthenticated()){
     ctx.body = {
       code:-1,
       msg:'please login'

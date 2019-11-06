@@ -50,6 +50,7 @@ export default {
     }
   },
   methods:{
+    // 提交订单
     submit: async function(){
       let {status,data:{code,id}}=await this.$axios.post('/order/createOrder',{
         count:this.cart[0].count,
