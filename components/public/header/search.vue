@@ -5,10 +5,12 @@
         :span="3"
         class="left"
       >
-        <img
-          src="//s0.meituan.net/bs/fe-web-meituan/e5eeaef/img/logo.png"
-          alt="美团"
-        >
+        <nuxt-link to="/">
+          <img
+            src="//s0.meituan.net/bs/fe-web-meituan/e5eeaef/img/logo.png"
+            alt="美团"
+          >
+        </nuxt-link>
       </el-col>
       <el-col
         :span="15"
