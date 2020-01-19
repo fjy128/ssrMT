@@ -5,7 +5,7 @@
       <el-col 
         :span="4" 
         class="navbar"
-       >
+      >
         <!-- <h3>我的美团</h3> -->
         <dl>
           <dt> 我的订单 </dt>
@@ -58,25 +58,47 @@
         :span="19"
         class="table"
       >
-      <el-tabs v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane label="全部订单" name="all"><list :cur="cur"/></el-tab-pane>
-        <el-tab-pane label="代付款" name="unpay"><list :cur="cur"/></el-tab-pane>
-        <el-tab-pane label="待使用" name="unuse"><list :cur="cur"/></el-tab-pane>
-        <el-tab-pane label="待评价" name="unreplay"><list :cur="cur"/></el-tab-pane>
-      </el-tabs>
+        <el-tabs
+          v-model="activeName"
+          @tab-click="handleClick"
+        >
+          <el-tab-pane
+            label="全部订单"
+            name="all"
+          >
+            <list :cur="cur" />
+          </el-tab-pane>
+          <el-tab-pane
+            label="代付款"
+            name="unpay"
+          >
+            <list :cur="cur" />
+          </el-tab-pane>
+          <el-tab-pane
+            label="待使用"
+            name="unuse"
+          >
+            <list :cur="cur" />
+          </el-tab-pane>
+          <el-tab-pane
+            label="待评价"
+            name="unreplay"
+          >
+            <list :cur="cur" />
+          </el-tab-pane>
+        </el-tabs>
       </el-col>
     </el-row>
-
   </div>
 </template>
 
 <script>
  import list from '../components/order/list'
   export default {
+    name: '',
     components: {
       list
     },
-    name: '',
     data() {
       return {
       activeName:'all',
@@ -110,14 +132,6 @@
         })
       }
     },
-    methods:{
-      handleClick:function(tab){
-        console.log(tab.name,555)
-        this.activeName = tab.name
-      }
-    },
-    
-    // 服务端渲染的页面数据请求
     async asyncData(ctx){
       let {status,data:{code,list}} = await ctx.$axios.post('order/getOrders')
       if(status ===200 && code ===0 && list.length){
@@ -143,6 +157,12 @@
             }
           })
         }
+      }
+    },
+    methods:{
+      handleClick:function(tab){
+        console.log(tab.name,555)
+        this.activeName = tab.name
       }
     }
   }

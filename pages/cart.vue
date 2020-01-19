@@ -49,6 +49,21 @@ export default {
       return total
     }
   },
+   async asyncData(ctx){
+    let {status,data:{code,data:{name,price}}}=await ctx.$axios.post('/cart/getCart',{
+      id:ctx.query.id
+    })
+    if(status===200&&code===0&&name){
+      return {
+        cart:[{
+          name,
+          price,
+          count:1
+        }],
+        cartNo:ctx.query.id
+      }
+    }
+  },
   methods:{
     // 提交订单
     submit: async function(){

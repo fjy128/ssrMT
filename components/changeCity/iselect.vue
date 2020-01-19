@@ -51,6 +51,7 @@ export default {
   watch:{
      // 监听省份
     pvalue:async function(newPvalue){
+      console.log(newPvalue,344444)
       let self=this;
       let {status,data:{city}}=await self.$axios.get(`/geo/province/${newPvalue}`)
       if(status===200){
@@ -94,6 +95,7 @@ export default {
       }
     },200),
     handleSelect:function(item){
+      
       console.log(item.value);
     },
     changeVal:function(val){
