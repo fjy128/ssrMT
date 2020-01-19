@@ -8,7 +8,6 @@
     >
       切换城市
     </nuxt-link>
-    [香河 廊坊 天津]
   </div>
 </template>
 
@@ -21,12 +20,9 @@ export default {
   },
   async mounted() {
    let {status,data: {province,city}} = await this.$axios.get(`geo/getPosition`)
-  console.log(status, province,city,'geo')
+   console.log(province,city)
   if(status !== 200) return false;
   this.currCity = `${province}${city}`
   },
 }
 </script>
-
-<style lang="css">
-</style>

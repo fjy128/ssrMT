@@ -40,6 +40,8 @@ export default {
       point:[]
     }
   },
+  
+  // 服务端渲染的页面数据请求
   async asyncData(ctx){
     let keyword = ctx.query.keyword
     let city = ctx.store.state.geo.position.city

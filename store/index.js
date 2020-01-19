@@ -20,6 +20,7 @@ const store = () => new Vuex.Store({
    * @description home/setHotPlace 获取左边栏菜单
    * **/
   actions:{
+    // nuxtServerInit 属于全局，只会执行一次
     async nuxtServerInit({commit},{req,app}){
     const {status, data: { province, city }} = await app.$axios.get('/geo/getPosition') 
     commit('geo/setPosition', status === 200 ? { city, province } : { city: '',  province: ''})

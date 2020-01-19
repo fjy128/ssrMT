@@ -67,6 +67,7 @@ export default {
       }
     }
   },
+  // 服务端渲染的页面数据请求
    async asyncData(ctx){
     let {status,data:{code,data:{name,price}}}=await ctx.$axios.post('/cart/getCart',{
       id:ctx.query.id

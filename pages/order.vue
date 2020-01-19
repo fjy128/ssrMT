@@ -116,6 +116,8 @@
         this.activeName = tab.name
       }
     },
+    
+    // 服务端渲染的页面数据请求
     async asyncData(ctx){
       let {status,data:{code,list}} = await ctx.$axios.post('order/getOrders')
       if(status ===200 && code ===0 && list.length){

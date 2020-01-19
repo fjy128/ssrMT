@@ -46,7 +46,7 @@ router.get('/province/:id',async (ctx)=>{
   ctx.body = { city: status === 200 ? city : [] }
 })
 
-// 获取城市
+// 获取全国城市
 router.get('/city',async(ctx)=>{
   let {status,data:{city}} = await axios.get(`http://cp-tools.cn/geo/city?sign=${sign}`)
   ctx.body = {city:status === 200 ? city : []}

@@ -1,7 +1,13 @@
 # meituan-app
 
-> My spectacular Nuxt.js project
+> 前端---美团---服务端
+> Vue CLI3 -> nuxt.js -> Vue2.5 -> vuex(前端技术)
+> SSR -> vuex(美团)
+> koa2 redis-> mongoose mongodb(美团)
 > 使用 ssr+koa+mongodb 以服务端渲染的方式开发美团外卖项目
+> 基础制知识：Vue全家桶基础 koa2核心知识 Nuxt.js
+> 实战重点：登录、注册 、 SMTP服务、城市服务、推荐服务、搜索服务、地图服务、购物车、订单设计、组件复用设计、接口设计、数据对象模型、思维与技巧
+> vuex 出现解决各组件间互不影响之间的传值
 
 ## Build Setup
 
@@ -19,8 +25,8 @@ $ npm run start
 # generate static project
 $ npm run generate
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+<!-- https://vuex.vuejs.org/zh/guide/actions.html -->
+For detailed explanation on how things work, check out [Nuxt.js docs--英文](https://nuxtjs.org).  [Nuxt.js docs--中文](https://zh.nuxtjs.org/guide/installation/)
 
 # 搭建项目遇到问题及解决方法
 
@@ -71,7 +77,7 @@ redis文档： https://www.php.cn/manual/view/16111.html
 2）解压redis 安装包
 
 3）启动服务器  Win+R快捷键，输入CMD，进入CMD窗口，进入解压后文件所在路径，并输入以下指令：redis-server.exe redis.windows.conf 
-- D:\Redis-x64-3.0.504(环球雅途工作) 进入d盘 d:
+- D:\Redis-x64-3.0.504(环球雅途工作盘) 进入d盘 d:
 
 完成上面步骤就完成了window系统安装redis并启动
 
@@ -89,7 +95,23 @@ window 进入 redis 解压包 执行redis-server (使用cmd)
 
 mongodb 语法文档:https://docs.mongodb.com/manual/reference/method/db.collection.find/#db.collection.find
 
+
+
 # passport  http://ju.outofmemory.cn/entry/99459
+
+# 相关技术文档
+
+[vue router](https://router.vuejs.org/zh/guide/)
+[vuex](https://vuex.vuejs.org/zh/)
+
+# 项目安装(通过脚手架安装)
+ 1、npm install -g npx
+ 2、npx create-nuxt-app [project-name]
+
+
+# 特殊命令
+curl -d 'name=lilei&age=27' http://localhost:3000/addPreson(向数据库写入信息，-d表示post)
+
 
 
 # 需要优化问题

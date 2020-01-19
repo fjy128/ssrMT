@@ -57,6 +57,8 @@ export default {
       ]
     }
   },
+
+  // 服务端渲染的页面数据请求
   async asyncData({app}) {
     let { data } = await app.$axios.get('searchList')
     return { items: data.list }

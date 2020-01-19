@@ -16,6 +16,7 @@
       v-model="cvalue"
       :disabled="!city.length"
       placeholder="城市"
+      @change="changeVal"
     >
       <el-option
         v-for="item in city"
@@ -94,6 +95,9 @@ export default {
     },200),
     handleSelect:function(item){
       console.log(item.value);
+    },
+    changeVal:function(val){
+      console.log(val)
     }
   }
 }
