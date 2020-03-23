@@ -51,11 +51,9 @@ async function start () {
 
   // Build in development
   if (config.dev) {
-    debugger
     const builder = new Builder(nuxt)
     await builder.build()
   } else {
-    debugger
     await nuxt.ready()
   }
 

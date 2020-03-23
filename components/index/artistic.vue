@@ -64,10 +64,10 @@
               >{{ posItem }}</span>
             </li>
             <li class="info">
-             {{item.rating}}分 | {{item.address}}
+              {{ item.rating }}分 | {{ item.address }}
             </li>
             <li class="price">
-              ￥<em>{{ item.price }}</em><span>/起</span>
+              ￥<em> {{ item.price }} </em><span>/起</span>
             </li>
           </ul>
         </el-card>

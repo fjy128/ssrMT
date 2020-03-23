@@ -21,6 +21,7 @@
         <span
           v-for="c in item.city"
           :key="c"
+          @click="changeCity(c)"
         >
           {{ c }}
         </span>
@@ -31,6 +32,7 @@
 
 <script>
 import pyjs from 'js-pinyin'
+import { mapActions } from 'vuex'
 export default {
   data(){
     return {
@@ -65,6 +67,16 @@ export default {
       blocks.sort((a,b)=>a.title.charCodeAt(0)-b.title.charCodeAt(0)) // 排序
       self.block=blocks
     }
+  },
+  methods:{
+     
+    changeCity:function(city){
+      console.log(city,23232)
+      // debugger
+      this.$store.commit('geo/setPosition',{ city:city, province:'province' })
+      location.href = '/'
+    },
+    // ...mapActions(['geo/setPosition'])
   }
 }
 </script>

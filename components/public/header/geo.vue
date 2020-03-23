@@ -19,10 +19,10 @@ export default {
     }
   },
   async mounted() {
-   let {status,data: {province,city}} = await this.$axios.get(`geo/getPosition`)
-   console.log(province,city)
-  if(status !== 200) return false;
-  this.currCity = `${province}${city}`
+  //  let {status,data: {province,city}} = await this.$axios.get(`geo/getPosition`)
+  //  console.log(province,city)
+  // if(status !== 200) return false;
+  // this.currCity = `${province}${city}`
   },
 }
 </script>
