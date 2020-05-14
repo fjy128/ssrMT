@@ -65,13 +65,11 @@
 
     >li {
       width: 33.3%;
-      height: 314px;
       padding: 10px;
       box-sizing: border-box;
       float: left;
-      background: #fff;
       transition: background-color .5s;
-      height: 314px;
+      // height: 314px;
 
       .el-card {
         width: 100%;
@@ -105,17 +103,22 @@
 
             .pos {
               font-size: 12px;
+              margin-bottom:8px;
 
               span {
                 height: 18px;
-                line-height: 18px;
                 text-align: center;
                 border: 1px solid #d8d8d8;
                 border-radius: 2px;
                 margin-right: 10px;
                 margin-bottom: 5px;
-                padding: 0 3px;
+                padding: 2px 3px;
               }
+            }
+
+            .info{
+              font-size:12px;
+              color:#ccc;
             }
 
             .price {
@@ -145,7 +148,9 @@
       }
 
       &:hover {
-        background: #F4F4F4;
+        border:1px solid #f4f4f4;
+        box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.137);
+	      transition: box-shadow 0.5s;
         transition: background-color .5s;
         border-radius: 4px;
       }

@@ -18,6 +18,7 @@
       placeholder="城市"
       @change="changeSelect"
     >
+      >
       <el-option
         v-for="item in city"
         :key="item.value"
@@ -94,7 +95,7 @@ export default {
         }
       }
     },200),
-    //下拉框选择城市
+    // 下拉框选择城市
     changeSelect:function(paramVal){
       let obj = {}
       obj = this.city.find(item=>{

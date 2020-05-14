@@ -32,6 +32,7 @@
 
 <script>
 import pyjs from 'js-pinyin'
+import { mapActions } from 'vuex'
 export default {
   data(){
     return {

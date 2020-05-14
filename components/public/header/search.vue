@@ -5,12 +5,11 @@
         :span="3"
         class="left"
       >
-        <nuxt-link to="/">
-          <img
-            src="//s0.meituan.net/bs/fe-web-meituan/e5eeaef/img/logo.png"
-            alt="美团"
-          >
-        </nuxt-link>
+        <img
+          src="//s0.meituan.net/bs/fe-web-meituan/e5eeaef/img/logo.png"
+          alt="美团"
+          @click="gotoIndex"
+        >
       </el-col>
       <el-col
         :span="15"
@@ -152,6 +151,13 @@ export default {
     }
   },
   methods:{
+    gotoIndex:function(){
+      let {path} = this.$router.history.current
+      if (path == '/' ){ return false;} // 阻止当前页面在首页点击访问首页报错问题
+      this.$router.push({
+        path:'/'
+      })
+    },
     focus:function(){
       this.isFocus=true
     },

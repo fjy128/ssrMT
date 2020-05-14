@@ -57,13 +57,17 @@
             >
               {{ item.title }}
             </li>
-            <li 
-              class="pos"
-            >
-              <span>{{ item.pos }}</span>
+            <li class="pos">
+              <span 
+                v-for="(posItem, posIndx) in item.pos"
+                :key="posIndx"
+              >{{ posItem }}</span>
+            </li>
+            <li class="info">
+              {{ item.rating }}分 | {{ item.address }}
             </li>
             <li class="price">
-              ￥<em>{{ item.price }}</em><span>/起</span>
+              ￥<em> {{ item.price }} </em><span>/起</span>
             </li>
           </ul>
         </el-card>
@@ -117,13 +121,15 @@ export default {
       if(status===200&&count>0){
         // 过滤有图片的数据
         let r= pois.filter(item=>item.photos.length).map(item=>{
-          return {
-            title:item.name,
-            pos:item.type.split(';')[0],
-            price:item.biz_ext.cost||'暂无',
-            img:item.photos[0].url,
-            url:'//abc.com'
-          }
+           return {
+              title:item.name,
+              pos:item.type.split(';'),
+              price:item.biz_ext.cost.length?item.biz_ext.cost:'暂无',
+              rating:item.biz_ext.rating,
+              address:item.address,
+              img:item.photos[0].url,
+              url:'//abc.com'
+            }
         })
         self.list[self.kind]=r.slice(0,12)
       }else{
