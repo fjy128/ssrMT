@@ -20,8 +20,25 @@ $ npm run start
 $ npm run generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org). [Nuxt.js中文]（https://zh.nuxtjs.org/）
 
+nuxt项目搭建：github上： https://github.com/nuxt-community/koa-template 或者官网
+   Nuxt.js目录
+    1）README.md --辅助文件
+    2）assets --静态资源文件css、img
+    3)backpack.config.js --拓展编译脚本，不要随便懂
+    4)build --编译后的文件
+    5)components --放置vue组件的地方
+    6)layouts --模版
+    7)node_modules --安装包
+    8)nuxt.config.js --NUXT的配置文件
+    9)package-lock.json
+    10)package.json --依赖文件
+    11)pages --页面路口（vue文件）
+    12)server --放koa相关文件
+    13)static --静态文件
+    14)store --vuex(只要有这个目录就是已经启用vuex了)
+ 
 # 搭建项目遇到问题及解决方法
 
 1、当启动项目的时，报【'babel-node' 不是内部或外部命令，也不是可运行的程序】错误；

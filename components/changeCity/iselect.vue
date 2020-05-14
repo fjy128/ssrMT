@@ -16,6 +16,7 @@
       v-model="cvalue"
       :disabled="!city.length"
       placeholder="城市"
+      @change="changeSelect"
     >
       <el-option
         v-for="item in city"
@@ -50,7 +51,6 @@ export default {
   watch:{
      // 监听省份
     pvalue:async function(newPvalue){
-      console.log(newPvalue,344444)
       let self=this;
       let {status,data:{city}}=await self.$axios.get(`/geo/province/${newPvalue}`)
       if(status===200){
@@ -77,6 +77,7 @@ export default {
     }
   },
   methods:{
+    // _.debounce延迟搜索
     querySearchAsync:_.debounce(async function(query,cb){
       let self=this;
       if(self.cities.length){
@@ -93,9 +94,21 @@ export default {
         }
       }
     },200),
+    //下拉框选择城市
+    changeSelect:function(paramVal){
+      let obj = {}
+      obj = this.city.find(item=>{
+        return item.value === paramVal
+      })
+      let newObj ={label:obj.value,value:obj.label}
+       // 调用搜索选择城市函数
+       this.handleSelect(newObj)
+    },
+    // 搜索选择城市
     handleSelect:function(item){
-      
-      console.log(item.value);
+       // 通过全家桶管理城市状态,当页面做跳转时，当前切换城市状态不会被改变
+      this.$store.commit('geo/setPosition',{ city:item.value, province:'' })
+      this.$router.push('/')
     }
   }
 }

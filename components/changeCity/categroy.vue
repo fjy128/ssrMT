@@ -21,6 +21,7 @@
         <span
           v-for="c in item.city"
           :key="c"
+          @click="changeCity(c)"
         >
           {{ c }}
         </span>
@@ -64,6 +65,13 @@ export default {
       }
       blocks.sort((a,b)=>a.title.charCodeAt(0)-b.title.charCodeAt(0)) // 排序
       self.block=blocks
+    }
+  },
+  methods:{
+    changeCity(val){
+      // 通过全家桶管理城市状态,当页面做跳转时，当前切换城市状态不会被改变
+      this.$store.commit('geo/setPosition',{ city:val, province:'' })
+      this.$router.push('/')
     }
   }
 }
