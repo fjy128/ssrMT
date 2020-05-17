@@ -69,10 +69,15 @@ export default {
     }
   },
   methods:{
-    changeCity(val){
+    async changeCity(val){
       // 通过全家桶管理城市状态,当页面做跳转时，当前切换城市状态不会被改变
       this.$store.commit('geo/setPosition',{ city:val, province:'' })
-      this.$router.push('/')
+      // 热门搜索随着城市变换数据做相应的改变
+      const {status:searchStatus,data:{result}}  = await this.$axios.get('/search/hotPlace',{
+        params:{ city:val.replace('市','') }
+      })
+     this.$store.commit('home/setHotPlace', searchStatus === 200 ? result:[])
+     this.$router.push('/')
     }
   }
 }

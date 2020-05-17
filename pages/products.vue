@@ -43,22 +43,22 @@ export default {
   
   // 服务端渲染的页面数据请求
   async asyncData(ctx){
-    let keyword = ctx.query.keyword
-    let city = ctx.store.state.geo.position.city
-    console.log(keyword,city,333)
+    let keyword = ctx.query.keyword//搜索关键字
+    let city = ctx.store.state.geo.position.city//所在城市
+    // console.log(keyword,city,333)
     let {status,data:{count,pois}} = await ctx.$axios.get('/search/resultsByKeywords',{
       params:{
         keyword,
         city
       }
     })
-    console.log(count,pois,344444)
+    // console.log(count,pois,344444)
     let {status:status2,data:{areas,types}} = await ctx.$axios.get('/categroy/crumbs',{
       params:{
         city
       }
     })
-    console.log(areas,types,666)
+    // console.log(areas,types,666)
     if(status===200&&count>0&&status2===200){
       return {
         list: pois.filter(item=>item.photos.length).map(item=>{

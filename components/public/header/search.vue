@@ -26,8 +26,9 @@
           <button class="el-button el-button--primary">
             <i class="el-icon-search" />
           </button>
+          <!-- 用户获取输入框未输入时推荐 -->
           <dl
-            v-if="isHotPlace"
+            v-show="isHotPlace"
             class="hotPlace"
           >
             <dt>热门搜索</dt>
@@ -38,6 +39,7 @@
               <a :href="'/products?keyword='+encodeURIComponent(item.name)">{{ item.name }}</a>
             </dd>
           </dl>
+          <!-- 用户在搜索框输入数据时推荐 -->
           <dl
             v-show="isSearchList"
             class="searchList"
@@ -50,6 +52,7 @@
             </dd>
           </dl>
         </div>
+        <!-- 搜索框底部默认推荐 -->
         <p class="suggest">
           <a
             v-for="(item,idx) in $store.state.home.hotPlace.slice(0,5)"
@@ -59,48 +62,21 @@
             {{ item.name }}
           </a>
         </p>
+        <!-- 导航栏 -->
         <ul class="nav">
-          <li>
+          <li 
+            v-for="(item,idx) in navData"
+            :key="idx"
+          >
             <nuxt-link
-              to="/"
-              class="takeout"
+              :to="item.linkTo"
+              :class="item.className"
             > 
-              美团外卖
-            </nuxt-link>
-          </li>
-          <li>
-            <nuxt-link
-              to="/"
-              class="movie"
-            >
-              猫眼电影
-            </nuxt-link>
-          </li>
-          <li>
-            <nuxt-link
-              to="/"
-              class="hotel"
-            >
-              美团酒店
-            </nuxt-link>
-          </li>
-          <li>
-            <nuxt-link
-              to="/"
-              class="apartment"
-            >
-              民宿/公寓
-            </nuxt-link>
-          </li>
-          <li>
-            <nuxt-link
-              to="/"
-              class="business"
-            >
-              商家入驻
+              {{ item.name }}
             </nuxt-link>
           </li>
         </ul>
+        <!--  -->
       </el-col>
       <el-col
         :span="6"
@@ -136,6 +112,9 @@ import _ from 'lodash'// 引入lodash
 export default {
   data(){
     return {
+      navData:[{name:'美团外卖',className:'takeout',linkTo:'/'},{name:'猫眼电影',className:'movie',linkTo:'/'},
+      {name:'美团酒店',className:'hotel',linkTo:'/'},{name:'名宿/公寓',className:'apartment',linkTo:'/'},
+      {name:'商家入驻',className:'business',linkTo:'/'}],
       search:'',
       isFocus:false,
       hotPlace:[],
@@ -150,7 +129,14 @@ export default {
       return this.isFocus&&this.search
     }
   },
+  mounted(){
+    console.log(this.$store.state.home.hotPlace,'hotplace')
+  },
   methods:{
+    // fnSearchWord(item){
+    //   this.$router.push(`/products?keyword=${encodeURIComponent(item.name)}`)
+    //   console.log(item)
+    // },
     gotoIndex:function(){
       let {path} = this.$router.history.current
       if (path == '/' ){ return false;} // 阻止当前页面在首页点击访问首页报错问题
@@ -178,7 +164,8 @@ export default {
           city
         }
       })
-      self.searchList=top.slice(0,10) // 截取10 调数据
+      // self.searchList=top.slice(0,10) // 截取10 调数据
+      self.searchList=top
     },300)
   }
 }

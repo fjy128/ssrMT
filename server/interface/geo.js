@@ -9,7 +9,6 @@ const sign = 'fjy'//签名
 // 获取当前城市
 router.get('/getPosition', async (ctx) => {
   let {status,data: {province,city}} = await axios.get(`http://cp-tools.cn/geo/getPosition`)
-  console.log(status, province)
   if (status === 200) {
     ctx.body = {
       province,
