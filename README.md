@@ -28,6 +28,11 @@ $ npm run generate
 
 For detailed explanation on how things work, check out [Nuxt.js docs英文地址](https://nuxtjs.org). [Nuxt.js中文地址](https://zh.nuxtjs.org/)
 
+# 项目安装(通过脚手架安装)
+```bash
+ 1、npm install -g npx
+ 2、npx create-nuxt-app [project-name]
+```
 - nuxt项目搭建：[github项目搭建地址](https://github.com/nuxt-community/koa-template) 或者官网
    - Nuxt.js目录
     - 1）README.md --辅助文件
@@ -44,6 +49,94 @@ For detailed explanation on how things work, check out [Nuxt.js docs英文地址
     - 12)server --放koa相关文件
     - 13)static --静态文件
     - 14)store --vuex(只要有这个目录就是已经启用vuex了)
+  
+# 需求分析（接口设计原则）
+
+1、用户注册登录问题
+
+/users/signup  //注册
+
+/users/signin  //登陆
+
+/users/verify  //验证码
+
+/users/exit    //推出
+
+/users/getUser //用户登陆信息
+
+
+2、城市热门服务类接口设计
+
+/geo/getPosition
+
+/geo/province
+
+/geo/province/:id
+
+/geo/city            // 获取所有城市
+
+/geo/hostCity       // 获取热门城市
+
+/geo/menu          // 左边表单类表数据
+
+3、查询类服务接口设计
+
+/search/top                  // 输入搜索关键字获取数据 params 关键字(input)、当前城市(city)、 签名(sign)
+
+/search/resultsByKeywords
+
+/search/hotPlace            // 获取热门搜索
+
+/search/products
+
+/search/product/:id
+
+# 前期准备工作
+一、redis准备工作： 
+
+1、[安装redis地址](https://www.runoob.com/redis/redis-install.html)
+```bash
+1）mac版安装
+安装 redis : brew install redis(mac) 
+启动 redis : redis-server
+
+2）window版安装
+（1）[下载redis](https://www.runoob.com/redis/redis-install.html) 
+（2）解压redis 安装包
+（3）启动服务器  Win+R快捷键，输入CMD，进入CMD窗口，进入解压后文件所在路径，并输入以下指令：redis-server.exe redis.windows.conf 
+  - D:\Redis-x64-3.0.504(环球雅途工作盘) 进入d盘 d:
+  完成上面步骤就完成了window系统安装redis并启动
+  window 进入 redis 解压包 执行redis-server (使用cmd)
+  启动 redis-server
+```
+2、[redis官方文档](https://www.php.cn/manual/view/16111.html)
+
+二、mongodb准备工作
+
+```bash
+1、安装 mongodb
+2、启动 mongod --dbpath /Users/a/Desktop/meituan-app/data
+(备注：‘/Users/a/Desktop/meituan-app/data’是你数据库存放地址，data就是数据库文件)
+```
+[mongodb官方文档](https://docs.mongodb.com/manual/reference/method/db.collection.find/#db.collection.find)
+
+三、数据库导入数据
+
+```bash
+1）首先在RoTo 3T中导入数据
+2）执行命令：mongoimport -d dbs -c test pois.dat (数据表在哪就在哪文件下执行)
+其中 dbs 你的数据库名称，test 数据库的数据表名， pois是集合名， pois.dat即将导入数据库的数据源。
+3）项目中使用到的数据表都放在根目录下的dbs中
+```
+四、项目中接口签名
+
+```bash
+axios.get(`http://cp-tools.cn/geo/getPosition?sign=${sign}`)
+${sign}:签名  
+获取签名地址：http://cp-tools.cn/sign
+```
+
+# passport  http://ju.outofmemory.cn/entry/99459
  
 # 搭建项目遇到问题及解决方法
 
@@ -94,73 +187,6 @@ SyntaxError: Unexpected token import
           watchQuery: ['page'] 
       }
 ```
-
-
-# 前期准备工作
-一、redis准备工作： 
-
-1、[安装redis地址](https://www.runoob.com/redis/redis-install.html)
-```bash
-1）mac版安装
-安装 redis : brew install redis(mac) 
-启动 redis : redis-server
-
-2）window版安装
-（1）[下载redis](https://www.runoob.com/redis/redis-install.html) 
-（2）解压redis 安装包
-（3）启动服务器  Win+R快捷键，输入CMD，进入CMD窗口，进入解压后文件所在路径，并输入以下指令：redis-server.exe redis.windows.conf 
-  - D:\Redis-x64-3.0.504(环球雅途工作盘) 进入d盘 d:
-  完成上面步骤就完成了window系统安装redis并启动
-  window 进入 redis 解压包 执行redis-server (使用cmd)
-  启动 redis-server
-```
-2、[redis官方文档](https://www.php.cn/manual/view/16111.html)
-
-二、mongodb准备工作
-
-```bash
-1、安装 mongodb
-2、启动 mongod --dbpath /Users/a/Desktop/meituan-app/data
-(备注：‘/Users/a/Desktop/meituan-app/data’是你数据库存放地址，data就是数据库文件)
-```
-[mongodb官方文档](https://docs.mongodb.com/manual/reference/method/db.collection.find/#db.collection.find)
-
-三、数据库导入数据
-
-```bash
-1）首先在RoTo 3T中导入数据
-2）执行命令：mongoimport -d dbs -c test pois.dat (数据表在哪就在哪文件下执行)
-其中 dbs 你的数据库名称，test 数据库的数据表名， pois是集合名， pois.dat即将导入数据库的数据源。
-3）项目中使用到的数据表都放在根目录下的dbs中
-```
-四、项目中接口签名
-
-```bash
-axios.get(`http://cp-tools.cn/geo/getPosition?sign=${sign}`)
-${sign}:签名  
-获取签名地址：http://cp-tools.cn/sign
-```
-
-
-# passport  http://ju.outofmemory.cn/entry/99459
-
-# 相关技术文档
-
-- [vue router官方文档](https://router.vuejs.org/zh/guide/)
-- [vuex官方文档](https://vuex.vuejs.org/zh/)
-
-# 项目安装(通过脚手架安装)
-```bash
- 1、npm install -g npx
- 2、npx create-nuxt-app [project-name]
-```
-
-# 特殊命令
-```bash
-curl -d 'name=lilei&age=27' http://localhost:3000/addPreson(向数据库写入信息，-d表示post)
-```
-
-
 # 需要优化问题
 1、新用户注册模块，邮箱验证码后天接口需要区分大小写，后期要修正为不需要区分大小写
 
@@ -174,48 +200,16 @@ curl -d 'name=lilei&age=27' http://localhost:3000/addPreson(向数据库写入�
 
 6、用户登录失败或者密码账号有错做相应的弹框提示
 
+# 相关技术文档
+
+- [vue router官方文档](https://router.vuejs.org/zh/guide/)
+- [vuex官方文档](https://vuex.vuejs.org/zh/)
 
 
-# 需求分析（接口设计原则）
-
-1、用户注册登录问题
-
-/users/signup  //注册
-
-/users/signin  //登陆
-
-/users/verify  //验证码
-
-/users/exit    //推出
-
-/users/getUser //用户登陆信息
-
-
-2、城市热门服务类接口设计
-
-/geo/getPosition
-
-/geo/province
-
-/geo/province/:id
-
-/geo/city            // 获取所有城市
-
-/geo/hostCity       // 获取热门城市
-
-/geo/menu          // 左边表单类表数据
-
-3、查询类服务接口设计
-
-/search/top                  // 输入搜索关键字获取数据 params 关键字(input)、当前城市(city)、 签名(sign)
-
-/search/resultsByKeywords
-
-/search/hotPlace            // 获取热门搜索
-
-/search/products
-
-/search/product/:id
+# 特殊命令
+```bash
+curl -d 'name=lilei&age=27' http://localhost:3000/addPreson(向数据库写入信息，-d表示post)
+```
 
 # 高德地图 
 
