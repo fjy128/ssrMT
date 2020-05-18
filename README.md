@@ -121,13 +121,12 @@ SyntaxError: Unexpected token import
 
 二、mongodb准备工作
 
-安装 mongodb
-
-启动 mongod --dbpath /Users/a/Desktop/meituan-app/data
-
+```bash
+1、安装 mongodb
+2、启动 mongod --dbpath /Users/a/Desktop/meituan-app/data
 (备注：‘/Users/a/Desktop/meituan-app/data’是你数据库存放地址，data就是数据库文件)
-
-mongodb 语法文档:https://docs.mongodb.com/manual/reference/method/db.collection.find/#db.collection.find
+```
+[mongodb官方文档](https://docs.mongodb.com/manual/reference/method/db.collection.find/#db.collection.find)
 
 
 
@@ -135,17 +134,19 @@ mongodb 语法文档:https://docs.mongodb.com/manual/reference/method/db.collect
 
 # 相关技术文档
 
-[vue router](https://router.vuejs.org/zh/guide/)
-[vuex](https://vuex.vuejs.org/zh/)
+- [vue router官方文档](https://router.vuejs.org/zh/guide/)
+- [vuex官方文档](https://vuex.vuejs.org/zh/)
 
 # 项目安装(通过脚手架安装)
+```bash
  1、npm install -g npx
  2、npx create-nuxt-app [project-name]
-
+```
 
 # 特殊命令
+```bash
 curl -d 'name=lilei&age=27' http://localhost:3000/addPreson(向数据库写入信息，-d表示post)
-
+```
 
 
 # 需要优化问题
