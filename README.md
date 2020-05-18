@@ -1,13 +1,13 @@
-# meituan-app
+# 项目介绍
 
-> 前端---美团---服务端
-> Vue CLI3 -> nuxt.js -> Vue2.5 -> vuex(前端技术)
-> SSR -> vuex(美团)
-> koa2 redis-> mongoose mongodb(美团)
-> 使用 ssr+koa+mongodb 以服务端渲染的方式开发美团外卖项目
-> 基础制知识：Vue全家桶基础 koa2核心知识 Nuxt.js
-> 实战重点：登录、注册 、 SMTP服务、城市服务、推荐服务、搜索服务、地图服务、购物车、订单设计、组件复用设计、接口设计、数据对象模型、思维与技巧
-> vuex 出现解决各组件间互不影响之间的传值
+- 前端---美团---服务端
+- Vue CLI3 -> nuxt.js -> Vue2.5 -> vuex(前端技术)
+- SSR -> vuex(美团)
+- koa2 redis-> mongoose mongodb(美团)
+- 使用 ssr+koa+mongodb 以服务端渲染的方式开发美团外卖项目
+- 基础制知识：Vue全家桶基础 koa2核心知识 Nuxt.js
+- 实战重点：登录、注册 、 SMTP服务、城市服务、推荐服务、搜索服务、地图服务、购物车、订单设计、组件复用设计、接口设计、数据对象模型、思维与技巧
+- vuex 出现解决各组件间互不影响之间的传值
 
 ## Build Setup
 
@@ -100,7 +100,6 @@ SyntaxError: Unexpected token import
 一、redis准备工作： 
 
 1、[安装redis地址](https://www.runoob.com/redis/redis-install.html)
-
 ```bash
 1）mac版安装
 安装 redis : brew install redis(mac) 
@@ -117,8 +116,6 @@ SyntaxError: Unexpected token import
 ```
 2、[redis官方文档](https://www.php.cn/manual/view/16111.html)
 
-
-
 二、mongodb准备工作
 
 ```bash
@@ -128,6 +125,21 @@ SyntaxError: Unexpected token import
 ```
 [mongodb官方文档](https://docs.mongodb.com/manual/reference/method/db.collection.find/#db.collection.find)
 
+三、数据库导入数据
+
+```bash
+1）首先在RoTo 3T中导入数据
+2）执行命令：mongoimport -d dbs -c test pois.dat (数据表在哪就在哪文件下执行)
+其中 dbs 你的数据库名称，test 数据库的数据表名， pois是集合名， pois.dat即将导入数据库的数据源。
+3）项目中使用到的数据表都放在根目录下的dbs中
+```
+四、项目中接口签名
+
+```bash
+axios.get(`http://cp-tools.cn/geo/getPosition?sign=${sign}`)
+${sign}:签名  
+获取签名地址：http://cp-tools.cn/sign
+```
 
 
 # passport  http://ju.outofmemory.cn/entry/99459
@@ -204,31 +216,6 @@ curl -d 'name=lilei&age=27' http://localhost:3000/addPreson(向数据库写入�
 /search/products
 
 /search/product/:id
-
-
-4、数据库导入
-
-1）首先在RoTo 3T中导入数据
-
-2）执行命令：mongoimport -d dbs -c test pois.dat (数据表在哪就在哪文件下执行)
-
-其中 dbs 是你的数据库名称，test 是在数据创建的数据表名， pois是集合名， pois.dat是对应的数据源文件。
-
-  dbs:数据库
-
-  test:数据结合
-
-  pois.dat:数据源
-
-3）项目中使用到的数据表都放在根目录下的dbs中
-
-
-5、接口签名
-axios.get(`http://cp-tools.cn/geo/getPosition?sign=${sign}`)
-
-${sign}:签名  
-
-获取签名地址：http://cp-tools.cn/sign
 
 # 高德地图 
 
