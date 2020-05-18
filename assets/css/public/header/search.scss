@@ -101,13 +101,13 @@
           margin-top: 8px;
           height: 14px;
 
-          a {
+          span {
             color: #999;
             margin-right: 10px;
             margin-bottom: 3px;
             display: inline-block;
             font-size: 12px;
-
+            cursor:pointer;
             &:hover {
               color: #31BBAC;
             }

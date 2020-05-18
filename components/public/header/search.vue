@@ -35,8 +35,10 @@
             <dd 
               v-for="(item,idx) in $store.state.home.hotPlace.slice(0,5)" 
               :key="idx"
+              @click="linkToProduct(item)"
             >
-              <a :href="'/products?keyword='+encodeURIComponent(item.name)">{{ item.name }}</a>
+              {{ item.name }}
+              <!-- <a :href="'/products?keyword='+encodeURIComponent(item.name)">{{ item.name }}</a> -->
             </dd>
           </dl>
           <!-- 用户在搜索框输入数据时推荐 -->
@@ -47,20 +49,22 @@
             <dd
               v-for="(item,idx) in searchList"
               :key="idx"
+              @click="linkToProduct(item)"
             >
-              <a :href="'/products?keyword='+encodeURIComponent(item.name)">{{ item.name }}</a>
+              {{ item.name }}
+              <!-- <a :href="'/products?keyword='+encodeURIComponent(item.name)">{{ item.name }}</a> -->
             </dd>
           </dl>
         </div>
         <!-- 搜索框底部默认推荐 -->
         <p class="suggest">
-          <a
+          <span
             v-for="(item,idx) in $store.state.home.hotPlace.slice(0,5)"
             :key="idx"
-            :href="'/products?keyword='+encodeURIComponent(item.name)"
+            @click="linkToProduct(item)"
           >
             {{ item.name }}
-          </a>
+          </span>
         </p>
         <!-- 导航栏 -->
         <ul class="nav">
@@ -131,8 +135,14 @@ export default {
   },
   mounted(){
     console.log(this.$store.state.home.hotPlace,'hotplace')
+    console.log(this.search,'4444')
   },
   methods:{
+    async linkToProduct(item){
+      // this.search=item.name
+      // /products?keyword='+encodeURIComponent(item.name)
+      this.$router.push(`/products?keyword=${item.name}`)
+    },
     // fnSearchWord(item){
     //   this.$router.push(`/products?keyword=${encodeURIComponent(item.name)}`)
     //   console.log(item)

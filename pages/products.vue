@@ -25,6 +25,8 @@ import Categroy from '@/components/products/categroy.vue'
 import List from '@/components/products/list.vue'
 import Amap from '@/components/public/map.vue'
 export default {
+  // watchQuery成功解决asyncData服务端渲染不会根据路由变化改变数据，keyword是路由变换的关键字
+  watchQuery:['keyword'],
   components:{
     Crumbs,
     Categroy,
@@ -40,9 +42,20 @@ export default {
       point:[]
     }
   },
-  
+   //监听
+    watch: {
+        '$route' (to, from) {
+          // let toQuery = to.query.keyword, fromQuery = from.query.keyword
+          let _that = this;
+          // if(toQuery)
+        //  this.asyncData(_that)
+            console.log(to,from,'666')
+
+        }
+    },
   // 服务端渲染的页面数据请求
   async asyncData(ctx){
+    console.log(1212212222222)
     let keyword = ctx.query.keyword//搜索关键字
     let city = ctx.store.state.geo.position.city//所在城市
     // console.log(keyword,city,333)

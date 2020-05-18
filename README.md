@@ -74,6 +74,21 @@ SyntaxError: Unexpected token import
 
 创建eslint配置文件： .eslintrc.js
 
+4、nuxt的asyncData数据不会根据页面路由参数改变重新渲染数据
+问题分析：由于asyncData方法是在组件初始化 前被调用的，并且是在服务端调用，也就意味着只能在首次重新加载的时候调用，如果遇到了分页，当页码改变的时候不能做服务端的调用，路由参数改变也是如此。
+解决方案：nuxt的官方文档中提供了watchQuery属性可以监听参数字符串的更改。将调用所有组件方法(asyncData, fetch, validate, layout, …)。 为了提高性能，默认情况下禁用
+watchQuery的使用方法：（watchQuery其实监听的是路径上参数的变化，从而调用asyncData方法）
+1）首先如果要全局使用watchQuery，那就在nuxt.config.js中全局配置
+module.exports = {
+    watchQuery: true
+}
+2）如果不在nuxt.config.js中全局配置，那就默认是只在当前页面的监听
+export default {
+   //此处的page是当前路径上参数的key名
+    watchQuery: ['page'] 
+}
+[参考地址](https://blog.csdn.net/zah521999/article/details/89944991)
+
 # 前期准备工作
 一、redis准备工作： 
 
