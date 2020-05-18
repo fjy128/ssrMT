@@ -26,9 +26,9 @@ $ npm run start
 $ npm run generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org). [Nuxt.js中文]（https://zh.nuxtjs.org/）
+For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org). [Nuxt.js中文](https://zh.nuxtjs.org/)
 
-- nuxt项目搭建：github上： https://github.com/nuxt-community/koa-template 或者官网
+- nuxt项目搭建：[github上](https://github.com/nuxt-community/koa-template) 或者官网
    - Nuxt.js目录
     - 1）README.md --辅助文件
     - 2）assets --静态资源文件css、img
@@ -49,52 +49,59 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 
 1、当启动项目的时，报【'babel-node' 不是内部或外部命令，也不是可运行的程序】错误；
 
- 执行cnpm i babel-core babel-preset-es2015 babel-cli 可以修复
-
+```bash
+ 解决方法：执行 cnpm i babel-core babel-preset-es2015 babel-cli 可以修复
+```
  2、启动项目中出现如下报错，需要安装一下,并创建文件 .babelrc
 
  ```bash
 import Koa from‘koa’
-
 SyntaxError: Unexpected token import
 
 语法错误：此处不应该出现import
 
-执行：cnpm install --save-dev babel-preset-env babel-cli
+解决方法：
 
-新建一个.babelrc文件，并在里面写入：
-{
-  "presets":["es2015"]
-}
+1）执行：cnpm install --save-dev babel-preset-env babel-cli
+2）新建一个.babelrc文件，并在里面写入：
+  {
+    "presets":["es2015"]
+  }
 ```
 
 3、项目运行成功时，报【 No ESLint configuration found】错误解决办法
 
-执行：cnpm install eslint --save-dev 
+```bash
+  解决方法：
 
-创建eslint配置文件： .eslintrc.js
+1）执行：cnpm install eslint --save-dev 
+2）创建eslint配置文件： .eslintrc.js
+```
 
 4、nuxt的asyncData数据不会根据页面路由参数改变重新渲染数据
-问题分析：由于asyncData方法是在组件初始化 前被调用的，并且是在服务端调用，也就意味着只能在首次重新加载的时候调用，如果遇到了分页，当页码改变的时候不能做服务端的调用，路由参数改变也是如此。
-解决方案：nuxt的官方文档中提供了watchQuery属性可以监听参数字符串的更改。将调用所有组件方法(asyncData, fetch, validate, layout, …)。 为了提高性能，默认情况下禁用
-watchQuery的使用方法：（watchQuery其实监听的是路径上参数的变化，从而调用asyncData方法）
-1）首先如果要全局使用watchQuery，那就在nuxt.config.js中全局配置
-module.exports = {
-    watchQuery: true
-}
-2）如果不在nuxt.config.js中全局配置，那就默认是只在当前页面的监听
-export default {
-   //此处的page是当前路径上参数的key名
-    watchQuery: ['page'] 
-}
+
+```bash
+1）问题分析：由于asyncData方法是在组件初始化 前被调用的，并且是在服务端调用，也就意味着只能在首次重新加载的时候调用，如果遇到了分页，当页码改变的时候不能做服务端的调用，路由参数改变也是如此。
+2）解决方案：nuxt的官方文档中提供了watchQuery属性可以监听参数字符串的更改。将调用所有组件方法(asyncData, fetch, validate, layout, …)。 为了提高性能，默认情况下禁用
+3）watchQuery的使用方法：（watchQuery其实监听的是路径上参数的变化，从而调用asyncData方法）
+（1）首先如果要全局使用watchQuery，那就在nuxt.config.js中全局配置
+      module.exports = {
+          watchQuery: true
+      }
+（2）如果不在nuxt.config.js中全局配置，那就默认是只在当前页面的监听
+      export default {
+        //此处的page是当前路径上参数的key名
+          watchQuery: ['page'] 
+      }
+```
 [参考地址](https://blog.csdn.net/zah521999/article/details/89944991)
 
 # 前期准备工作
 一、redis准备工作： 
 
-https://www.runoob.com/redis/redis-install.html
+1）[安装redis](https://www.runoob.com/redis/redis-install.html)
 
-redis文档： https://www.php.cn/manual/view/16111.html
+2）[redis文档](https://www.php.cn/manual/view/16111.html)
 
 1、mac版
 
