@@ -26,9 +26,9 @@ $ npm run start
 $ npm run generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org). [Nuxt.js中文](https://zh.nuxtjs.org/)
+For detailed explanation on how things work, check out [Nuxt.js docs英文地址](https://nuxtjs.org). [Nuxt.js中文地址](https://zh.nuxtjs.org/)
 
-- nuxt项目搭建：[github上](https://github.com/nuxt-community/koa-template) 或者官网
+- nuxt项目搭建：[github项目搭建地址](https://github.com/nuxt-community/koa-template) 或者官网
    - Nuxt.js目录
     - 1）README.md --辅助文件
     - 2）assets --静态资源文件css、img
@@ -78,7 +78,7 @@ SyntaxError: Unexpected token import
 2）创建eslint配置文件： .eslintrc.js
 ```
 
-4、nuxt的asyncData数据不会根据页面路由参数改变重新渲染数据
+4、nuxt的asyncData数据不会根据页面路由参数改变重新渲染数据[参考地址](https://blog.csdn.net/zah521999/article/details/89944991)
 
 ```bash
 1）问题分析：由于asyncData方法是在组件初始化 前被调用的，并且是在服务端调用，也就意味着只能在首次重新加载的时候调用，如果遇到了分页，当页码改变的时候不能做服务端的调用，路由参数改变也是如此。
@@ -94,35 +94,30 @@ SyntaxError: Unexpected token import
           watchQuery: ['page'] 
       }
 ```
-[参考地址](https://blog.csdn.net/zah521999/article/details/89944991)
+
 
 # 前期准备工作
 一、redis准备工作： 
 
-1）[安装redis](https://www.runoob.com/redis/redis-install.html)
+1、[安装redis地址](https://www.runoob.com/redis/redis-install.html)
 
-2）[redis文档](https://www.php.cn/manual/view/16111.html)
-
-1、mac版
-
+```bash
+1）mac版安装
 安装 redis : brew install redis(mac) 
-
 启动 redis : redis-server
 
-2、window版
+2）window版安装
+（1）[下载redis](https://www.runoob.com/redis/redis-install.html) 
+（2）解压redis 安装包
+（3）启动服务器  Win+R快捷键，输入CMD，进入CMD窗口，进入解压后文件所在路径，并输入以下指令：redis-server.exe redis.windows.conf 
+  - D:\Redis-x64-3.0.504(环球雅途工作盘) 进入d盘 d:
+  完成上面步骤就完成了window系统安装redis并启动
+  window 进入 redis 解压包 执行redis-server (使用cmd)
+  启动 redis-server
+```
+2、[redis官方文档](https://www.php.cn/manual/view/16111.html)
 
-1）下载redis https://www.runoob.com/redis/redis-install.html
 
-2）解压redis 安装包
-
-3）启动服务器  Win+R快捷键，输入CMD，进入CMD窗口，进入解压后文件所在路径，并输入以下指令：redis-server.exe redis.windows.conf 
-- D:\Redis-x64-3.0.504(环球雅途工作盘) 进入d盘 d:
-
-完成上面步骤就完成了window系统安装redis并启动
-
-window 进入 redis 解压包 执行redis-server (使用cmd)
-
-启动 redis-server
 
 二、mongodb准备工作
 
