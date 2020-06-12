@@ -12,31 +12,49 @@
           {{ meta.name }}
         </nuxt-link>
       </h3>
-      <el-rate
-        v-model="meta.rate"
-        :colors="['#ff9900', '#ff9900', '#FF9900']"
-        disabled
-      />
-      <span
-        v-if="meta.rate>4"
-        class="s-item-comment"
-      > 很好</span>
-      <span
-        v-else-if="meta.rate>3"
-        class="s-item-comment"
-      >一般</span>
-      <span
+      <p
+        v-if="meta.rate>0"
+      >
+        <el-rate
+          v-model="meta.rate"
+          :colors="['#ff9900', '#ff9900', '#FF9900']"
+          disabled
+        />
+    
+        <span
+          v-if="meta.rate>4"
+          class="s-item-comment"
+        > 很好</span>
+        <span
+          v-else-if="meta.rate>3"
+          class="s-item-comment"
+        >一般</span>
+        <span
+          v-else
+          class="s-item-comment"
+        >很差</span>
+        <span class="s-item-value">{{ meta.rate }}分</span>
+      </p>
+      <p
         v-else
-        class="s-item-comment"
-      >很差</span>
-      <span class="s-item-value">{{ meta.rate }}分</span>
+        :style="{display:'inline-block',color:'#999'}"
+      >
+        <span>暂无评分</span>
+      </p>
       <span class="s-item-comment-total">{{ meta.comment }}人评论</span>
       <p>
         <span class="s-item-type">{{ meta.type }}</span>
         <span class="s-item-addr">{{ meta.addr }}</span>
       </p>
       <p>
-        <em class="s-item-price">￥{{ meta.price }}起</em>
+        <em
+          v-if="meta.price>0"
+          class="s-item-price"
+        >￥{{ meta.price }}起</em>
+        <em
+          v-else
+          class="no-item-price"
+        >暂无价格</em>
         <b>{{ meta.status }}</b>
       </p>
       <ul>

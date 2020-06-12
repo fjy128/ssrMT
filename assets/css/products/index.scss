@@ -36,7 +36,7 @@
         }
       }
 
-      >span {
+      span {
         font-size: 12px;
         margin-right: 10px;
       }
@@ -47,6 +47,10 @@
 
       .s-item-price {
         color: #f60;
+      }
+      .no-item-price{
+        color:#999;
+        font-size:12px;
       }
 
       >p {
@@ -201,11 +205,11 @@
       }
     }
 
-    &:nth-child(1) {
-      dd {
-        border-bottom: 1px solid #ddd;
-      }
-    }
+    // &:nth-child(1) {
+    //   dd {
+    //     border-bottom: 1px solid #ddd;
+    //   }
+    // }
   }
   .m-product-select {
     padding-bottom: 5px;

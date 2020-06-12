@@ -8,7 +8,6 @@ const sign = 'fjy'
 
  // 
 router.get('/top',async(ctx)=>{
- 
   
   // 获取第三方线上数据
   let {status,data:{top}} = await axios.get('http://cp-tools.cn/search/top',{
@@ -27,7 +26,6 @@ router.get('/top',async(ctx)=>{
 router.get('/hotPlace',async(ctx)=>{
    // 获取当前城市名称，vuex 客户端与服务端数据是共享的状态，首先需要判断一下ctx.store ,会存在信息不同步问题
   let city = ctx.store ? ctx.store.geo.position.city : ctx.query.city
-  console.log(ctx.store,city,'获取热点搜索')
   let {status,data:{result}} = await axios.get('http://cp-tools.cn/search/hotPlace',{
     params:{
       sign,

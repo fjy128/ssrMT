@@ -42,36 +42,23 @@ export default {
       point:[]
     }
   },
-   //监听
-    watch: {
-        '$route' (to, from) {
-          // let toQuery = to.query.keyword, fromQuery = from.query.keyword
-          let _that = this;
-          // if(toQuery)
-        //  this.asyncData(_that)
-            console.log(to,from,'666')
-
-        }
-    },
+  
   // 服务端渲染的页面数据请求
   async asyncData(ctx){
-    console.log(1212212222222)
     let keyword = ctx.query.keyword//搜索关键字
     let city = ctx.store.state.geo.position.city//所在城市
-    // console.log(keyword,city,333)
+    // 获取列表数据
     let {status,data:{count,pois}} = await ctx.$axios.get('/search/resultsByKeywords',{
       params:{
         keyword,
         city
       }
     })
-    // console.log(count,pois,344444)
     let {status:status2,data:{areas,types}} = await ctx.$axios.get('/categroy/crumbs',{
       params:{
         city
       }
     })
-    // console.log(areas,types,666)
     if(status===200&&count>0&&status2===200){
       return {
         list: pois.filter(item=>item.photos.length).map(item=>{

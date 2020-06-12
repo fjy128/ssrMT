@@ -66,8 +66,17 @@
             <li class="info">
               {{ item.rating }}分 | {{ item.address }}
             </li>
-            <li class="price">
+            <li
+              v-if="item.isPrice"
+              class="price"
+            >
               ￥<em> {{ item.price }} </em><span>/起</span>
+            </li>
+            <li
+              v-else
+              class="price"
+            >
+              <em>{{ item.price }}</em>
             </li>
           </ul>
         </el-card>
@@ -124,7 +133,8 @@ export default {
            return {
               title:item.name,
               pos:item.type.split(';'),
-              price:item.biz_ext.cost.length?item.biz_ext.cost:'暂无',
+              price:item.biz_ext.cost.length?item.biz_ext.cost:'暂无价格',
+              isPrice:item.biz_ext.cost.length?true:false,
               rating:item.biz_ext.rating,
               address:item.address,
               img:item.photos[0].url,

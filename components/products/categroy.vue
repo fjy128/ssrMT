@@ -1,6 +1,6 @@
 <template>
   <div class="m-product-categroy">
-    <dl class="classic">
+    <!-- <dl class="classic">
       <dt>分类</dt>
       <dt>全部</dt>
       <dd
@@ -12,7 +12,7 @@
           :list="item.module"
         />
       </dd>
-    </dl>
+    </dl> -->
     <dl class="classic">
       <dt>区域</dt>
       <dt>全部</dt>
@@ -80,10 +80,10 @@ export default {
         text-align: center;
       }
     }
-    &:nth-child(1){
+    /* &:nth-child(1){
       dd{
         border-bottom: 1px solid #ddd;
       }
-    }
+    } */
   }
 </style>

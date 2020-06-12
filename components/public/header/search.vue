@@ -18,6 +18,7 @@
         <div class="wrapper">
           <el-input
             v-model="search"
+            clearable
             placeholder="搜索商家或地点"
             @focus="focus"
             @blur="blur"
@@ -61,7 +62,7 @@
           <span
             v-for="(item,idx) in $store.state.home.hotPlace.slice(0,5)"
             :key="idx"
-            @click="linkToProduct(item)"
+            @click="linkToProduct(item,true)"
           >
             {{ item.name }}
           </span>
@@ -122,31 +123,25 @@ export default {
       search:'',
       isFocus:false,
       hotPlace:[],
-      searchList:[]
+      searchList:[],
     }
   },
   computed:{
-    isHotPlace:function(){
+    isHotPlace(){
       return this.isFocus&&!this.search
     },
-    isSearchList:function(){
+    isSearchList(){
       return this.isFocus&&this.search
     }
   },
-  mounted(){
-    console.log(this.$store.state.home.hotPlace,'hotplace')
-    console.log(this.search,'4444')
-  },
   methods:{
-    async linkToProduct(item){
-      // this.search=item.name
+    async linkToProduct(item,isTrue){
+      if(!isTrue){
+        this.search=item.name
+      }   
       // /products?keyword='+encodeURIComponent(item.name)
       this.$router.push(`/products?keyword=${item.name}`)
     },
-    // fnSearchWord(item){
-    //   this.$router.push(`/products?keyword=${encodeURIComponent(item.name)}`)
-    //   console.log(item)
-    // },
     gotoIndex:function(){
       let {path} = this.$router.history.current
       if (path == '/' ){ return false;} // 阻止当前页面在首页点击访问首页报错问题
@@ -161,7 +156,7 @@ export default {
       let self=this;
       setTimeout(function(){
         self.isFocus=false
-      },200)
+      },500)
     },
     // 这里不能输一个字母就请求，需要延时， 可以使用第三方库 lodash,需要项目中安装
     input:_.debounce(async function(){
