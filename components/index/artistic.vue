@@ -42,6 +42,7 @@
       <li
         v-for="item in cur"
         :key="item.title"
+        @click="linkToProduct(item)"
       >
         <el-card
           :body-style="{ padding: '0px' }"
@@ -141,10 +142,14 @@ export default {
               url:'//abc.com'
             }
         })
-        self.list[self.kind]=r.slice(0,12)
+        self.list[self.kind]=r.slice(0,18)
       }else{
         self.list[self.kind]=[]
       }
+    },
+    // 跳转到产品页面
+    linkToProduct(item){
+      this.$router.push(`/products?keyword=${item.title}`)
     }
   },
 

@@ -177,4 +177,7 @@ export default {
 </script>
 
 <style lang="css">
+img{
+  cursor:pointer
+}
 </style>
