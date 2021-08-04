@@ -40,6 +40,12 @@
         font-size: 12px;
         margin-right: 10px;
       }
+      .span_type{
+        margin-right:5px;
+        border:1px solid rgba(0, 134, 246, .3);
+        color:#0086f6;
+        padding:2px
+      }
 
       .s-item-comment-total {
         color: #f90;
@@ -87,9 +93,9 @@
 
         li {
           width: 668px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          // white-space: nowrap;
+          // overflow: hidden;
+          // text-overflow: ellipsis;
 
           .detail-type {
             width: 27px;
@@ -102,6 +108,16 @@
             border-radius: 1px;
             padding: 1px 2px;
             margin-right: 10px;
+          }
+          .detail-label{
+            padding:2px;
+            background:#f8fafd;
+            margin:1px 3px;
+            border-radius:2px
+          }
+          .detail-showmore{
+            color:#2393ee;
+            cursor:pointer
           }
 
           &:nth-child(2) {

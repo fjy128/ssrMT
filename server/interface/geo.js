@@ -16,8 +16,8 @@ router.get('/getPosition', async (ctx) => {
     }
   } else {
     ctx.body = {
-      province: '',
-      city: ''
+      province: '广东省',
+      city: '深圳市'
     }
   }
 })

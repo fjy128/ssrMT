@@ -43,7 +43,12 @@
       </p>
       <span class="s-item-comment-total">{{ meta.comment }}人评论</span>
       <p>
-        <span class="s-item-type">{{ meta.type }}</span>
+        <!-- <span class="s-item-type">{{ meta.type }}</span> -->
+        <span
+          v-for="(itemType,idxType) in meta.type"
+          :key="idxType"
+          class="span_type"
+        >{{ itemType }}</span>
         <span class="s-item-addr">{{ meta.addr }}</span>
       </p>
       <p>
@@ -65,7 +70,17 @@
           <span class="detail-type">跟团</span>{{meta.group}}
         </li> -->
         <li v-if="meta.scene&&meta.scene.length">
-          <span class="detail-type">景酒</span>{{ meta.scene }}
+          <span class="detail-type">景酒</span>
+          <span
+            v-for="tag in meta.scene "
+            :key="tag"
+            class="detail-label"
+          >{{ tag }}</span>
+         
+          <span
+            class="detail-showmore"
+            @click="showMore"
+          >收起</span>
         </li>
         <li v-else>
           <span class="detail-type">景酒</span>暂无描述
@@ -83,6 +98,16 @@ export default {
       default(){
         return {}
       }
+    }
+  },
+  data(){
+    return{
+      ismore:false
+    }
+  },
+  methods:{
+    showMore(){
+      this.ismore=true
     }
   }
 }

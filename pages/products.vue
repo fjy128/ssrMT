@@ -60,16 +60,17 @@ export default {
       }
     })
     if(status===200&&count>0&&status2===200){
+      debugger
       return {
         list: pois.filter(item=>item.photos.length).map(item=>{
           return {
-            type: item.type,
+            type: item.type?item.type.split(';'):[],
             img: item.photos[0].url,
             name: item.name,
             comment: Math.floor(Math.random()*10000),
             rate: Number(item.biz_ext.rating),
             price: Number(item.biz_ext.cost),
-            scene: item.tag,
+            scene: item.tag.length>0?item.tag.split(','):[],
             tel: item.tel,
             status: '可订明日',
             location: item.location,
